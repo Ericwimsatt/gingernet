@@ -1,0 +1,25 @@
+/* Global styles */
+:root {
+  --primary-gradient: linear-gradient(45deg, #ff6b6b, #ffd93d);
+  --background-gradient: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  --text-color: #ffffff;
+  --text-color-secondary: #cccccc;
+  --font-family-fun: 'Chalkboard SE', 'Marker Felt', 'Bradley Hand', cursive;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --overlay-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family-fun);
+  color: var(--text-color);
+  background: var(--background-gradient);
+  min-height: 100vh;
+  overflow-x: hidden;
+}

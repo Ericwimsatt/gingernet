@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-rename-tag",
+    "streetsidesoftware.code-spell-checker",
+    "christian-kohler.path-intellisense",
+    "formulahendry.auto-close-tag",
+    "naumovs.color-highlight",
+    "ms-vscode.vscode-typescript-next",
+    "bradlc.vscode-tailwindcss",
+    "github.copilot",
+    "github.copilot-chat"
+  ]
+}
