@@ -1,7 +1,7 @@
 /* Global styles */
 :root {
   --primary-gradient: linear-gradient(45deg, #ff6b6b, #ffd93d);
-  --background-gradient: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  --background-gradient: linear-gradient(135deg, #1a1a1a 0%, #44362a 100%);
   --text-color: #ffffff;
   --text-color-secondary: #cccccc;
   --font-family-fun: 'Chalkboard SE', 'Marker Felt', 'Bradley Hand', cursive;
