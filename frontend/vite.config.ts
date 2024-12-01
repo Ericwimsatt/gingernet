@@ -6,7 +6,7 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   base: '/',
-  build: {
-    outDir: path.resolve(__dirname, '../dist')
-  }
+  // build: {
+  //   outDir: path.resolve(__dirname, '../dist')
+  // }
 })
