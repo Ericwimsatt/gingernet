@@ -7,12 +7,13 @@ export function Home() {
       <header className="header">
         <img src={GingernetIcon} className="logo" alt="Gingernet.net Logo" />
         <h1>Gingernet.net</h1>
-        <p className="tagline">Internet for your <span className="souls">soul</span></p>
+        <p className="tagline">The web for your <span className="souls">soul</span></p>
       </header>
 
-      <footer className="footer">
+      {/* <footer className="footer">
         <p>{new Date().getFullYear()} Gingernet.net - All rights reserved</p>
-      </footer>
+      </footer> */}
+      
     </div>
   )
 }
