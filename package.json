@@ -1,0 +1,11 @@
+{
+    "name": "gingernet.net",
+    "private": true,
+    "workspaces": [
+      "frontend"
+    ],
+    "scripts": {
+      "build": "npm run build --workspace=frontend",
+      "preview": "npm run preview --workspace=frontend"
+    }
+  }
