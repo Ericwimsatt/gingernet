@@ -7,7 +7,7 @@ export function Home() {
       <header className="header">
         <img src={GingernetIcon} className="logo" alt="Gingernet.net Logo" />
         <h1>Gingernet.net</h1>
-        <p className="tagline">Internet for people with <span className="souls">souls</span></p>
+        <p className="tagline">Internet for your <span className="souls">soul</span></p>
       </header>
 
       <footer className="footer">
