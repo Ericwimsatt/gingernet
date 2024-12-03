@@ -11,8 +11,6 @@ export const StatesmanshipPlay: React.FC = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [showNextHint, setShowNextHint] = useState(false);
-  const [previousGuess, setPreviousGuess] = useState<string | null>(null);
   const maxGuesses = 4;
 
   interface GameTurn {
@@ -86,7 +84,6 @@ export const StatesmanshipPlay: React.FC = () => {
     const currentTurn = guessCount;
     
     setIsAnimating(true);
-    setPreviousGuess(normalizedGuess);
     
     try {
       // Update the current turn with the guess
@@ -137,7 +134,6 @@ export const StatesmanshipPlay: React.FC = () => {
         await new Promise(resolve => setTimeout(resolve, 500));
         
         if (nextGuessCount < maxGuesses) {
-          setShowNextHint(true);
           const nextHint = getNextHint(currentState, normalizedGuess, nextGuessCount);
           setGameTurns(prev => [...prev, { 
             hint: nextHint,
@@ -169,7 +165,6 @@ export const StatesmanshipPlay: React.FC = () => {
     setShowSuggestions(false);
     setSelectedIndex(-1);
     setIsAnimating(false);
-    setPreviousGuess(null);
     if (newState) {
       setGameTurns([{ 
         hint: newState.hints.first,
