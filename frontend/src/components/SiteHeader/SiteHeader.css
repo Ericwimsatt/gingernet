@@ -30,7 +30,6 @@
   font-family: var(--font-family-fun);
   margin: 0;
   background: var(--brand-color);
-  -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   white-space: nowrap;

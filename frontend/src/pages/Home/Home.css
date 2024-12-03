@@ -1,76 +1,68 @@
 .home {
   width: 100%;
   min-height: 100vh;
-  padding-top: var(--header-height);
   display: flex;
   flex-direction: column;
   color: #ffffff;
   overflow-x: hidden;
+  background: linear-gradient(45deg, #411d1d, #473d11);
+
 }
 
 .header {
-  padding: 2rem 1rem;
-  text-align: center;
-  width: 100%;
+  padding: 1rem;
+  width: fit-content;
   box-sizing: border-box;
-}
-
-.header h1 {
-  font-size: min(5rem, 10vw);
-  font-family: var(--font-family-fun);
-  margin: -1rem 0 0;
-  padding: 0 0 0.5em;
-  background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  transform: rotate(-2deg);
-  transition: all 0.3s ease;
-  line-height: 1.2;
-  white-space: nowrap;
-  position: relative;
-  z-index: 1;
-}
-
-.header h1:hover {
-  transform: rotate(2deg) scale(1.05);
-}
-
-.tagline {
-  font-size: min(2rem, 6vw);
-  font-family: var(--font-family-fun);
-  color: #cccccc;
-  margin-top: 1rem;
-  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
-  padding: 0 1rem;
-  transform: rotate(2deg);
-  transition: all 0.3s ease;
-
-  .souls {
-    background: linear-gradient(180deg, #ff6b6b, #ffd93d);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-weight: bold;
-    text-shadow: none;
-  }
-}
-.tagline:hover {
-  transform: rotate(-2deg) scale(1.05);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: center;
 }
 
 .logo {
-  height: min(500px, 70vh);
+  height: clamp(40px, 10vw, 120px);;
   width: auto;
-  max-width: 90vw;
-  filter: drop-shadow(0 0 1rem rgba(255, 255, 255, 0.3));
   transition: all 0.3s ease;
-  transform-origin: center center;
+  filter: drop-shadow(0 0 0.5rem rgba(255, 255, 255, 0.1));
 }
 
 .logo:hover {
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 2em #646cffaa);
+  transform: rotate(20deg);
+  filter: drop-shadow(0 0 1rem rgba(255, 255, 255, 0.3));
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-title {
+  font-family: var(--font-family-fun);
+  margin: 0;
+  background: var(--brand-color);
+  background-clip: text;
+  color: transparent;
+  transition: all 0.3s ease;
+  line-height: 1.2;
+  white-space: nowrap;
+  padding-bottom: 6px;
+  font-size: clamp(2rem, 5vw, 2.5rem);
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.game-container {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .home-nav {
@@ -107,7 +99,6 @@
   font-weight: bold;
   margin-bottom: 0.5rem;
   background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-  -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }

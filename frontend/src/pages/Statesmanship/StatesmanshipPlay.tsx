@@ -176,7 +176,7 @@ export const StatesmanshipPlay: React.FC = () => {
   if (!currentState) return <div>Loading...</div>;
 
   return (
-    <div className="statesmanship-play">
+    <div className="statesmanship-page">
       <h2>Statesmanship</h2>
       
       <div className="game-status">
