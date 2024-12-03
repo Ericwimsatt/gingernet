@@ -10,13 +10,11 @@ export const StatesmanshipPlay: React.FC = () => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
-  const [isAnimating, setIsAnimating] = useState(false);
   const maxGuesses = 4;
 
   interface GameTurn {
     hint: string;
     guess?: string;
-    animationState?: string;
   }
   
   const [gameTurns, setGameTurns] = useState<GameTurn[]>([]);
@@ -78,12 +76,10 @@ export const StatesmanshipPlay: React.FC = () => {
 
   const handleGuess = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!guess.trim() || !currentState || isAnimating || gameStatus !== 'playing') return;
+    if (!guess.trim() || !currentState || gameStatus !== 'playing') return;
     
     const normalizedGuess = guess.trim();
     const currentTurn = guessCount;
-    
-    setIsAnimating(true);
     
     try {
       // Update the current turn with the guess
@@ -92,8 +88,7 @@ export const StatesmanshipPlay: React.FC = () => {
         if (updated[currentTurn]) {
           updated[currentTurn] = {
             ...updated[currentTurn],
-            guess: normalizedGuess,
-            animationState: 'start'
+            guess: normalizedGuess
           };
         }
         return updated;
@@ -101,43 +96,16 @@ export const StatesmanshipPlay: React.FC = () => {
 
       await new Promise(resolve => setTimeout(resolve, 300));
 
-      setGameTurns(prev => {
-        const updated = [...prev];
-        if (updated[currentTurn]) {
-          updated[currentTurn] = {
-            ...updated[currentTurn],
-            animationState: 'shake'
-          };
-        }
-        return updated;
-      });
-
-      await new Promise(resolve => setTimeout(resolve, 500));
-
       if (normalizedGuess.toLowerCase() === currentState.name.toLowerCase()) {
         setGameStatus('won');
       } else {
         const nextGuessCount = guessCount + 1;
         setGuessCount(nextGuessCount);
         
-        setGameTurns(prev => {
-          const updated = [...prev];
-          if (updated[currentTurn]) {
-            updated[currentTurn] = {
-              ...updated[currentTurn],
-              animationState: 'slide'
-            };
-          }
-          return updated;
-        });
-
-        await new Promise(resolve => setTimeout(resolve, 500));
-        
         if (nextGuessCount < maxGuesses) {
           const nextHint = getNextHint(currentState, normalizedGuess, nextGuessCount);
           setGameTurns(prev => [...prev, { 
-            hint: nextHint,
-            animationState: 'fade-in'
+            hint: nextHint
           }]);
         }
         
@@ -151,7 +119,7 @@ export const StatesmanshipPlay: React.FC = () => {
       setGuess('');
       setSuggestions([]);
       setShowSuggestions(false);
-      setIsAnimating(false);
+      setSelectedIndex(-1);
     }
   };
 
@@ -164,11 +132,9 @@ export const StatesmanshipPlay: React.FC = () => {
     setSuggestions([]);
     setShowSuggestions(false);
     setSelectedIndex(-1);
-    setIsAnimating(false);
     if (newState) {
       setGameTurns([{ 
-        hint: newState.hints.first,
-        animationState: 'fade-in'
+        hint: newState.hints.first
       }]);
     }
   };
@@ -186,7 +152,7 @@ export const StatesmanshipPlay: React.FC = () => {
       <div className="turns-section">
         {gameTurns.map((turn, index) => (
           <div key={index} className="turn-container">
-            <div className={`game-item hint-item ${turn.animationState === 'fade-in' ? 'fade-in' : ''}`}>
+            <div className="game-item hint-item">
               {turn.hint}
             </div>
             {turn.guess && (
@@ -194,23 +160,23 @@ export const StatesmanshipPlay: React.FC = () => {
                 currentState && turn.guess.toLowerCase() === currentState.name.toLowerCase() 
                   ? 'correct' 
                   : 'incorrect'
-                } ${turn.animationState || ''}`}
+                }`}
               >
                 {turn.guess}
               </div>
             )}
           </div>
         ))}
-        {gameStatus === 'playing' && !isAnimating && (
+        {gameStatus === 'playing' && (
           <form onSubmit={handleGuess} className="guess-form">
             <div className="autocomplete-container">
               <input
+                className="game-item guess-input"
                 type="text"
                 value={guess}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
                 placeholder="Guess which state..."
-                className="guess-input"
                 disabled={gameStatus !== 'playing'}
               />
               {showSuggestions && suggestions.length > 0 && (

@@ -1,110 +1,45 @@
 .statesmanship-page {
-  /* Rustic theme variables */
+  /* Theme variables */
   --parchment: #fdfbf7;
   --leather: #834c32;
-  --aged-paper: #e8dcc4;
   --wood: #8b4513;
-  --wood-dark: #5d4037;
+  --wood-dark: #111010;
   --ink: #2c1810;
-  --page-padding-mobile: 1rem;
-  --page-padding-desktop: 2rem;
+  --green-color: #4caf50;
+  --green-color-dark: #388e3c;
   --container-padding-mobile: 1rem;
   --container-padding-desktop: 2rem;
-  --green-color: #2ecc71;
-  --green-color-dark: #27ae60;
-  --parchment-light: #fefefe;
 
-  min-height: 100vh;
-  background: var(--parchment);
-  padding: var(--page-padding-mobile);
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
+  height: 100vh;
 
-  .statesmanship-container {
-    margin: 0 auto;
-    padding: var(--container-padding-mobile);
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: var(--parchment-light);
-      pointer-events: none;
-    }
-  }
-
+  background: #f5d9c6;
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 1rem;
+  font-family: 'Crimson Text', serif;
+  
   h1 {
-    color: var(--wood-dark);
     font-size: clamp(1.8rem, 5vw, 2.5rem);
-    text-align: center;
-    margin-bottom: 1rem;
     font-weight: bold;
-    font-family: 'Crimson Text', serif;
     position: relative;
-
-    &::after {
-      content: '';
-      display: block;
-      width: min(100px, 30%);
-      height: 2px;
-      background: var(--wood);
-      margin: 0.5rem auto;
-    }
   }
 
   p {
     font-size: clamp(1.2rem, 3vw, 2.4rem);
     line-height: 1.6;
     color: var(--ink);
-    margin-bottom: 1rem;
-  }
-
-  .statesmanship-play {
-    width: 100%;
-    max-width: 800px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  h2 {
-    color: var(--wood-dark);
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .game-status {
-    margin-bottom: 1rem;
-    text-align: center;
-
-    p {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      min-height: 3rem;
-    }
   }
 
   .turns-section {
-    margin-top: 0.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     position: relative;
     flex: 1;
     overflow-y: auto;
-  }
-
-  .turn-container {
-    position: relative;
   }
 
   .game-item {
@@ -114,61 +49,42 @@
     margin-bottom: 0.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-  }
+    transition: all 0.2s;
+    text-align: left;
 
-  .hint-item.game-item {
-    border-left: 4px solid var(--green-color);
-    opacity: 1;
-    transform: translateY(0);
-
-    &:last-child:not(:first-child) {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-
-    &:last-child.fade-in {
-      animation: fadeIn 0.3s ease-out 0.3s forwards;
-    }
-  }
-
-  .guess-item.game-item {
-    margin-left: 1.5rem;
-    font-weight: 500;
-    transform-origin: left center;
-
-    &.start {
-      transition: none;
-    }
-
-    &.shake {
-      animation: shake 0.5s ease-in-out;
-    }
-
-    &.incorrect {
-      border-left: 4px solid #e74c3c;
-      color: #c0392b;
-    }
-
-    &.correct {
+    &.hint-item {
       border-left: 4px solid var(--green-color);
-      color: var(--green-color-dark);
+      background: var(--parchment);
+    }
+
+    &.guess-item {
+      margin-left: 1.5rem;
+      font-weight: 500;
+
+      &.incorrect {
+        border-left: 4px solid #e74c3c;
+        color: #c0392b;
+      }
+
+      &.correct {
+        border-left: 4px solid var(--green-color);
+        color: var(--green-color-dark);
+      }
     }
   }
 
+  /* Input and suggestions */
   .autocomplete-container {
     position: relative;
-    width: 100%;
-    max-width: 100%;
     margin-bottom: 1rem;
   }
 
   .guess-input {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid var(--leather);
-    border-radius: 4px;
     width: 100%;
-    box-sizing: border-box;
+    border: 1px solid var(--leather);
+    font-size: 1rem;
+    margin-bottom:0px;
+    color:var(--ink);
 
     &:focus {
       outline: none;
@@ -188,73 +104,80 @@
     left: 0;
     right: 0;
     background: white;
-    border: 1px solid var(--leather);
-    border-radius: 4px;
-    margin-top: 4px;
+    border: 1px solid var(--wood);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     max-height: 200px;
     overflow-y: auto;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
   .suggestion-item {
     padding: 8px 12px;
     cursor: pointer;
-    transition: background-color 0.2s;
     border-left: 3px solid transparent;
     color: var(--ink);
+    transition: all 0.2s;
 
-    &:hover,
-    &.selected {
+    &:hover, &.selected {
       background-color: var(--parchment);
-    }
-
-    &.selected {
-      border-left: 3px solid var(--green-color);
+      border-left-color: var(--green-color);
       padding-left: 9px;
     }
   }
 
-  .game-over {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--leather);
+  /* Game status and feedback */
+  .game-status {
     text-align: center;
   }
 
-  .rustic-button {
-    background: var(--green-color);
-    color: white;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin: .4rem;
-
-    &:hover {
-      background: var(--green-color-dark);
-    }
-
-    &:disabled {
-      background: #ccc;
-      cursor: not-allowed;
-    }
+  .guesses-remaining {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 0.25rem;
+    vertical-align: middle;
+    display: inline-block;
   }
 
+  .guesses-remaining[data-guesses="4"] {
+    color: var(--green-color);
+    font-size: 1.5rem;
+  }
+
+  .guesses-remaining[data-guesses="3"] {
+    color: var(--green-color);
+    font-size: 1.5rem;
+  }
+
+  .guesses-remaining[data-guesses="2"] {
+    color: #e26d28;
+    font-size: 1.5rem;
+  }
+
+  .guesses-remaining[data-guesses="1"] {
+    color: #720000;
+    font-size: 2rem;
+  }
+
+  .guesses-remaining[data-guesses="0"] {
+    color: #850d00;
+    font-size: 3rem;
+  }
+
+  /* Game over overlay */
   .game-over-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     padding: 1rem;
-    animation: fadeIn 0.3s ease-out;
   }
 
   .game-over-content {
@@ -262,8 +185,8 @@
     padding: 2rem;
     border-radius: 8px;
     text-align: center;
-    max-width: 100%;
     width: min(80vw, 500px);
+    max-width: 100%;
 
     &.won .game-over-title {
       color: var(--green-color-dark);
@@ -274,150 +197,30 @@
     }
   }
 
-  .game-over-title {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+  /* Buttons */
+  button {
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0.75rem 1.5rem;
+    transition: background-color 0.2s;
+    background-color: var(--wood-dark);
+    color:#fff0e8;
     font-weight: bold;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 
-  .game-over-message {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
   }
 
   .play-again-button {
     background: var(--green-color);
     color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    cursor: pointer;
     margin-top: 1rem;
-    transition: background-color 0.2s;
 
-    &:hover {
+    &:hover:not(:disabled) {
       background: var(--green-color-dark);
     }
-  }
-
-  .guesses-remaining {
-    display: inline-block;
-    line-height: 1;
-    position: relative;
-    font-weight: bold;
-    font-size: 1.5rem;
-    margin: 0 0.25rem;
-    vertical-align: middle;
-    display: inline-block;
-
-    &[data-guesses="4"] {
-      color: var(--green-color);
-      animation: gentle-pulse 2s infinite;
-    }
-
-    &[data-guesses="3"] {
-      color: var(--green-color);
-      animation: medium-shake 1.5s infinite;
-    }
-
-    &[data-guesses="2"] {
-      color: #f39c12;
-      animation: urgent-shake 1s infinite;
-    }
-
-    &[data-guesses="1"] {
-      color: #c0392b;
-      font-size: 2rem;
-      animation: frantic-pulse 0.7s infinite;
-    }
-
-    &[data-guesses="0"] {
-      color: #c0392b;
-      font-size: 3rem;
-      animation: frantic-pulse 0.7s infinite;
-    }
-  }
-
-  .game-description {
-    max-width: 600px;
-    margin: 2rem auto;
-    text-align: center;
-    padding: 0 1rem;
-    line-height: 1.6;
-
-    p {
-      margin: 1rem 0;
-      font-size: 1.1rem;
-
-      &:first-child {
-        font-size: 1.3rem;
-        font-weight: 500;
-        color: var(--wood-dark);
-      }
-    }
-  }
-
-  @media (min-width: 768px) {
-    padding: var(--page-padding-desktop);
-    padding-bottom: var(--page-padding-desktop);
-
-    .statesmanship-container {
-      padding: var(--container-padding-desktop);
-    }
-  }
-
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20% { transform: translateX(-5px); }
-    40% { transform: translateX(5px); }
-    60% { transform: translateX(-3px); }
-    80% { transform: translateX(3px); }
-  }
-
-  @keyframes scaleSlide {
-    0% {
-      transform: scaleX(1) translateX(0);
-    }
-    50% {
-      transform: scaleX(0.98) translateX(5px);
-    }
-    100% {
-      transform: scaleX(0.95) translateX(10px);
-    }
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes gentle-pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-  }
-
-  @keyframes medium-shake {
-    0%, 100% { transform: translateX(0) rotate(0); }
-    25% { transform: translateX(-2px) rotate(-1deg); }
-    75% { transform: translateX(2px) rotate(1deg); }
-  }
-
-  @keyframes urgent-shake {
-    0%, 100% { transform: translateX(0) rotate(0); }
-    20% { transform: translateX(-3px) rotate(-2deg); }
-    40% { transform: translateX(3px) rotate(2deg); }
-    60% { transform: translateX(-3px) rotate(-2deg); }
-    80% { transform: translateX(3px) rotate(2deg); }
-  }
-
-  @keyframes frantic-pulse {
-    0%, 100% { transform: scale(1) rotate(0); }
-    25% { transform: scale(1.1) rotate(-2deg); }
-    50% { transform: scale(1) rotate(0); }
-    75% { transform: scale(1.1) rotate(2deg); }
   }
 }
